@@ -5,3 +5,7 @@
 ## v0.0.2
 
 * No Assets (Javascripts y Stylesheets)
+
+## v0.0.3
+
+* Controller ahora usa nombre Plural
