@@ -1,0 +1,12 @@
+<%%- clase = nil if clase.nil? -%>
+
+<%%= content_tag :article, :id => "elementos_#{<%= item %>.id}", :class => clase.presence || cycle(:impar, :par, :name => :listado) do %>
+  <%%= link_to <%= admin_item_path %>(<%= item %>) do %>
+    # <%%= <%= item %>.nombre %>
+  <%%- end -%>
+  <aside>
+    <%%= link_to "Ordenar", "javascript:(return false)", :title => "Mantenga click y arrastre para reordenar", :class => "arrastrable principal" %>
+    <%%= link_to "Editar", edit_admin_<%= item %>_path(<%= item %>) if can? :editar, <%= item %> %>
+    <%%= link_to "Eliminar", admin_<%= item %>_path(<%= item %>), :method => :delete, :confirm => t("confirmacion"), :remote => true %>
+  </aside>
+<%%- end -%>

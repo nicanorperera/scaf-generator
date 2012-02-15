@@ -1,0 +1,18 @@
+<%%- mini = false if mini.nil? %>
+<%%- opciones = { :class => (mini.present? ? :mini : :normal) } -%>
+<%%- remote = false if remote.nil? -%>
+
+<%%= simple_form_for <%= item %> , :url => url, :remote => remote, :html => opciones do |f| %>
+  <%%- if mini -%>
+  <%%- else -%>
+<%- attributes.each do |attribute| -%>
+    <%%= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %> %>
+<%- end -%>
+  <%%- end -%>
+<%%= f.button :submit, :name => nil, :disable_with => t("espere") %>
+<%%- end -%>
+
+
+
+
+

@@ -1,0 +1,12 @@
+<h1><%= plural_name.titleize %><h1>
+<nav>
+  <%%= link_to "Mostrar formulario", "#mostrar-formulario", :class => :"mostrar-formulario" %>
+  <%%= link_to "Agregar <%= item %> ", new_admin_<%= item %>_path %>
+</nav>
+
+<%%= render "formulario", :<%= item %> => @<%= item %>, :url => <%= admin_items_path %>, :mini => true, :remote => true %>
+<%%= content_tag :section, :id => :listado, :class => [:listado, :ordenable] do %>
+  <%%= render "header" %>
+  <%%= render @<%= items %> %>
+  <%%= hidden_field_tag :url, reordenar_admin_<%= items %>_path, :class => :url %>
+<%%- end -%>
