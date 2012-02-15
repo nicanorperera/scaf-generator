@@ -14,10 +14,10 @@ class ScafGenerator < Rails::Generators::Base
     obtener_atributos
     
     # Genera un Controller
-    generate "controller", "#{scaffold_name}"
+    generate "controller", "#{scaffold_name} --no-assets"
     
     # Genera un Scaffold sin Controller ni Vistas
-    generate("scaffold", "#{scaffold_name} #{arguments.join(' ')} --no-scaffold-controller")
+    generate("scaffold", "#{scaffold_name} #{arguments.join(' ')} --no-scaffold-controller --no-assets")
 
     # Agrega controller de administracion en controllers/admin/
     template 'admin_controller.rb', "app/controllers/admin/#{plural_name}_controller.rb"
