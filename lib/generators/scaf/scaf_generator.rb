@@ -29,7 +29,7 @@ class ScafGenerator < Rails::Generators::Base
     template "views/nombre.html.erb", "app/views/admin/#{plural_name}/_#{singular_name}.html.erb"
 
     # Agrega Ruta en namespace :admin
-    inject_into_file 'config/routes.rb', "\n    resources :#{plural_name}" ,  :after => /namespace :admin do/ 
+    inject_into_file 'config/routes.rb', "\n    resources :#{plural_name} do\n      post :reordenar, :on => :collection\n    end" ,  :after => /namespace :admin do/ 
   end
 
   private
