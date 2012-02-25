@@ -19,6 +19,10 @@ class ScafGenerator < Rails::Generators::Base
     # Genera un Scaffold sin Controller ni Vistas ni Assets
     generate("scaffold", "#{scaffold_name} #{arguments.join(' ')} --no-scaffold-controller --no-assets")
 
+    #codigo_eliminar = "  def eliminar!\n    update_attributes :es_activo => false\n  end"
+    #inject_into_file 'app/models/#{scaffold_name}.rb', "  def eliminar!\n    update_attributes :es_activo => false\n  end" ,  :after => /namespace :admin do/ 
+    inject_into_class "app/models/#{scaffold_name}.rb",   "def eliminar!\n    update_attributes :es_activo => false\n  end"
+
     # Agrega controller de administracion en controllers/admin/
     template 'admin_controller.rb', "app/controllers/admin/#{plural_name}_controller.rb"
     
