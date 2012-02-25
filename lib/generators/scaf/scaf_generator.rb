@@ -21,7 +21,7 @@ class ScafGenerator < Rails::Generators::Base
 
     #codigo_eliminar = "  def eliminar!\n    update_attributes :es_activo => false\n  end"
     #inject_into_file 'app/models/#{scaffold_name}.rb', "  def eliminar!\n    update_attributes :es_activo => false\n  end" ,  :after => /namespace :admin do/ 
-    inject_into_class "app/models/#{scaffold_name}.rb",   "def eliminar!\n    update_attributes :es_activo => false\n  end"
+    inject_into_file "app/models/#{scaffold_name}.rb",   "def eliminar!\n    update_attributes :es_activo => false\n  end", :after => /class \w*$/ 
 
     # Agrega controller de administracion en controllers/admin/
     template 'admin_controller.rb', "app/controllers/admin/#{plural_name}_controller.rb"
