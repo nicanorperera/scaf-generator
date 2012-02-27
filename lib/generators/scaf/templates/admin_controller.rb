@@ -1,10 +1,9 @@
 class Admin::<%= plural_class_name %>Controller < Admin::AdminController
-  # include Sortable
+
   load_and_authorize_resource
 
   def index
     @<%= item %> = <%= class_name %>.new
-    @<%= items %> = <%= class_name %>.page params[:page]
   end
 
   def new; end
@@ -35,10 +34,6 @@ class Admin::<%= plural_class_name %>Controller < Admin::AdminController
   end
   
   private
-
-  # def sort_coleccion
-  #   <%= class_name %>.scoped
-  # end
 
   def translate_notice
     t("notice.#{action_name}", :elemento => @<%= item %>)
