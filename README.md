@@ -3,13 +3,13 @@
 Un generador Scaffold-like adaptado a las necesidades de Xaver.
 
 
-## Installation
+## Instalación
 
-Add to your Gemfile and run the `bundle` command to install it.
+Agrega al Gemfile y ejecuta el comando `bundle` para instalarlo.
 
  ```ruby
  gem "scaf-generator"
  ```
 
-**Requires Ruby 1.9.2 or later.**
+**Requiere Ruby 1.9.2 o superior.**
 

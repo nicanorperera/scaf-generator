@@ -20,7 +20,7 @@ class ScafGenerator < Rails::Generators::Base
     generate("scaffold", "#{scaffold_name} #{arguments.join(' ')} es_activo:boolean --no-scaffold-controller --no-assets")
 
     # Agrega Default Scope y Metodo Eliminar! al Modelo
-    inject_into_file "app/models/#{singular_name}.rb", "\ndefault_scope where(:es_activo => true)\n  def eliminar!\n    update_attributes :es_activo => false\n  end" ,  :after => /ActiveRecord::Base$/ 
+    inject_into_file "app/models/#{singular_name}.rb", "\n\n  default_scope where(:es_activo => true)\n\n  def eliminar!\n    update_attributes :es_activo => false\n  end\n" ,  :after => /ActiveRecord::Base$/ 
 
     # Agrega controller de administracion en controllers/admin/
     template 'admin_controller.rb', "app/controllers/admin/#{plural_name}_controller.rb"

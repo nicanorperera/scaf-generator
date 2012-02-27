@@ -1,8 +1,6 @@
 Description:
-    Explain the generator
+    Generador Similar a Scaffold adaptado a las necesidades de Xaver
 
 Example:
-    rails generate escaf Thing
+    rails g scaf Persona nombre apellido edad:integer descripcion:text
 
-    This will create:
-        what/will/it/create

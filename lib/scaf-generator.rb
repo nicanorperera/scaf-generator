@@ -2,6 +2,6 @@ require "version"
 
 module Scaf
   module Generator
-    # Your code goes here...
+    # Todo el codigo importante se encuentra en lib/generators/
   end
 end
