@@ -16,11 +16,11 @@ class ScafGenerator < Rails::Generators::Base
     # Genera un Controller
     generate "controller", "#{plural_name} --no-assets"
     
-    # Genera un Scaffold sin Controller ni Vistas ni Assets
-    generate("scaffold", "#{scaffold_name} #{arguments.join(' ')} --no-scaffold-controller --no-assets")
+    # Genera un Scaffold sin Controller ni Vistas ni Assets y con atributo logico <tt>es_activo<tt>
+    generate("scaffold", "#{scaffold_name} #{arguments.join(' ')} es_activo:boolean --no-scaffold-controller --no-assets")
 
-    # Agrega Metodo Eliminar! al Modelo
-    inject_into_file "app/models/#{singular_name}.rb", "\n  def eliminar!\n    update_attributes :es_activo => false\n  end" ,  :after => /ActiveRecord::Base$/ 
+    # Agrega Default Scope y Metodo Eliminar! al Modelo
+    inject_into_file "app/models/#{singular_name}.rb", "\ndefault_scope where(:es_activo => true)\n  def eliminar!\n    update_attributes :es_activo => false\n  end" ,  :after => /ActiveRecord::Base$/ 
 
     # Agrega controller de administracion en controllers/admin/
     template 'admin_controller.rb', "app/controllers/admin/#{plural_name}_controller.rb"
