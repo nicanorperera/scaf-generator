@@ -20,7 +20,7 @@ class ScafGenerator < Rails::Generators::Base
     generate("scaffold", "#{scaffold_name} #{arguments.join(' ')} --no-scaffold-controller --no-assets")
 
     # Agrega Metodo Eliminar! al Modelo
-    inject_into_file 'app/models/#{singular_name}.rb', "  def eliminar!\n    update_attributes :es_activo => false\n  end" ,  :after => /ActiveRecord::Base$/ 
+    inject_into_file "app/models/#{singular_name}.rb", "  def eliminar!\n    update_attributes :es_activo => false\n  end" ,  :after => /ActiveRecord::Base$/ 
 
     # Agrega controller de administracion en controllers/admin/
     template 'admin_controller.rb', "app/controllers/admin/#{plural_name}_controller.rb"
