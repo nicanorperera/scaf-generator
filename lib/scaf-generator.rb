@@ -1,4 +1,4 @@
-require "scaf-generator/version"
+require "version"
 
 module Scaf
   module Generator
