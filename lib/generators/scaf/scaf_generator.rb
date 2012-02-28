@@ -11,13 +11,18 @@ class ScafGenerator < Rails::Generators::Base
     super
 
     # Inicializa la variable de instancia @attributos a partir de los argumentos
-    # obtener_atributos
+    obtener_atributos
     
     # Genera un Controller
     generate "controller", "#{plural_name} --no-assets"
     
     # Genera un Scaffold sin Controller ni Vistas ni Assets y con atributo logico <tt>es_activo<tt>
     generate("scaffold", "#{scaffold_name} #{arguments.join(' ')} es_activo:boolean --no-scaffold-controller --no-assets")
+
+    says "******** #{destination_root}**********"
+    says "******** #{destination_root}**********"
+    says "******** #{destination_root}**********"
+    says "******** #{destination_root}**********"
 
     # Agrega Default Scope y Metodo Eliminar! al Modelo
     inject_into_file "app/models/#{singular_name}.rb", "\n\n  default_scope where(:es_activo => true)\n\n  def eliminar!\n    update_attributes :es_activo => false\n  end\n" ,  :after => /ActiveRecord::Base$/ 
