@@ -11,7 +11,7 @@ class ScafGenerator < Rails::Generators::Base
     super
 
     # Inicializa la variable de instancia @attributos a partir de los argumentos
-    obtener_atributos
+    # obtener_atributos
     
     # Genera un Controller
     generate "controller", "#{plural_name} --no-assets"
