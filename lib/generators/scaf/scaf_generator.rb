@@ -19,10 +19,11 @@ class ScafGenerator < Rails::Generators::Base
     # Genera un Scaffold sin Controller ni Vistas ni Assets y con atributo logico <tt>es_activo<tt>
     generate("scaffold", "#{scaffold_name} #{arguments.join(' ')} es_activo:boolean --no-scaffold-controller --no-assets")
 
-    says "******** #{destination_root}**********"
-    says "******** #{destination_root}**********"
-    says "******** #{destination_root}**********"
-    says "******** #{destination_root}**********"
+    # Encuentra el ultimo archivo de migracion creado. 
+    # Es necesario porque no se puede predecir el nombre del archivo.
+    # Luego pone valor por defecto de :es_activo en true.
+    migracion = Dir["#{destination_root}/db/migrate/*"].max.split('/').last
+    inject_into_file "db/migrate/#{migracion}", ", :default => true" ,  :after => 't.boolean :es_activo' 
 
     # Agrega Default Scope y Metodo Eliminar! al Modelo
     inject_into_file "app/models/#{singular_name}.rb", "\n\n  default_scope where(:es_activo => true)\n\n  def eliminar!\n    update_attributes :es_activo => false\n  end\n" ,  :after => /ActiveRecord::Base$/ 
