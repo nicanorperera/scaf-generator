@@ -36,7 +36,7 @@ class PruebaGenerator < Rails::Generators::Base
     args.each do |arg|
       @atributos << Atributo.new(arg)
     end
-
+    @identificador = @atributos.first.nombre
     info #TODO: sacar de aca!.
 
   end
@@ -52,7 +52,8 @@ class PruebaGenerator < Rails::Generators::Base
     end
     template "views/nombre.erb", "app/views/admin/#{@plural}/_#{@singular}.html.erb"
     
-    # add_admin_route "\n    resources :#{@plural} do\n      post :reordenar, :on => :collection\n    end"
+    resources_route = @con_orden ? "\n    resources :#{@plural} do\n      post :reordenar, :on => :collection\n    end" : "\n    resources :#{@plural}"
+    add_admin_route resources_route
       
     template 'cargar.erb', "lib/tasks/cargar_#{@plural}.rake"
   end
@@ -96,6 +97,10 @@ class PruebaGenerator < Rails::Generators::Base
     say "plural_path    #{@plural_path}"
     say "new_path       #{@new_path}"
     say "edit_path      #{@edit_path}"
+  end
+  
+  def atributos_con_referencia
+    @atributos.select {|a| a.clase == :references}
   end
     
 end

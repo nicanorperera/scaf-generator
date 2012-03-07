@@ -46,7 +46,8 @@ class Atributo
     case @clase
     when :string   then "'Lorem Ipsum'"
     when :integer  then rand(50)
-    else ":ejemplo"
+    when :boolean  then 'true'      
+    else false
     end
   end
 

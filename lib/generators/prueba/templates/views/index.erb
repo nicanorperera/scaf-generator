@@ -10,7 +10,7 @@
 <%%= render "mini_form", :<%= @singular %> => @<%= @singular %>, :url => <%= @plural_path %> %>
 
 <table id="ordenable" class="table table-striped ordenable">
-  <%%= thead(:<%= @atributos.first.nombre %>) %>
+  <%%= thead(:<%= @identificador %>) %>
   <tbody>
     <%%= render @<%= @plural %> %>
   </tbody>
