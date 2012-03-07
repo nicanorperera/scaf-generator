@@ -1,0 +1,16 @@
+class Create<%= @classes %> < ActiveRecord::Migration
+  def change
+    create_table :<%= @plural %> do |t|
+      <%- @atributos.each do |a| -%>
+      t.<%= a.clase %> :<%= a.nombre %> <%= ", :default => #{a.default}" if a.default %>
+      <%- end -%>
+        
+      <%- if @con_slug -%>
+      t.string :slug
+      <%- end -%>    
+      t.boolean :es_activo, :default => true
+      
+      t.timestamps
+    end
+  end
+end

@@ -1,0 +1,14 @@
+class <%= @class %> < ActiveRecord::Base
+  
+  <%- if @con_slug? -%>
+  extend FriendlyId
+  friendly_id :codigo, use: :slugged
+  <%- end -%>
+    
+  default_scope where(:es_activo => true)<%= if @con_orden? ".order('#{@plural}.orden')" %>
+
+  def eliminar!
+    update_attributes :es_activo => false
+  end
+  
+end
