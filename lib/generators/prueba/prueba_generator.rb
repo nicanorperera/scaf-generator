@@ -8,18 +8,15 @@ class PruebaGenerator < Rails::Generators::Base
   argument :name, :type => :string, :required => true, :banner => 'Nombre'
   argument :args, :type => :array , :default => []   , :banner => 'Atributos'
 
-  class_option :orden   , :desc => 'Soporte para Ordenable.'          , :type => :boolean, :aliases => "-o", :default => false
-  class_option :slug    , :desc => 'Soporte pare FriendlyId.'         , :type => :boolean, :aliases => "-i", :default => false
-  class_option :archivo , :desc => 'Soporte para tener un archivo.', :type => :boolean, :aliases => "-a", :default => false
-
+  class_option :orden , :desc => 'Soporte para Ordenable.'  , :type => :boolean, :aliases => "-o", :default => false
+  class_option :slug  , :desc => 'Soporte pare FriendlyId.' , :type => :boolean, :aliases => "-i", :default => false
   
   def initialize(*arguments, &block)
     super
     
     @con_orden   = options.orden?
     @con_slug    = options.slug?
-    @con_archivo = options.foto?
-
+   
     @singular = @name.downcase
     @plural   = @singular.pluralize
     @class    = @name.camelize
@@ -37,7 +34,6 @@ class PruebaGenerator < Rails::Generators::Base
       @atributos << Atributo.new(arg)
     end
     @identificador = @atributos.first.nombre
-    info #TODO: sacar de aca!.
 
   end
   
@@ -75,28 +71,6 @@ class PruebaGenerator < Rails::Generators::Base
   
   def fecha
     Time.now.utc.strftime("%Y%m%d%H%M%S")
-  end
-  
-  # Este metodo es usado solo para testear.
-  # TODO: Eliminar metodo.
-  def info
-    say "Singular:#{@singular}. Plural:#{@plural}. Class:#{@class}. Classes:#{@classes}"
-
-    say '--- Opciones ---'
-    say "Con Orden"   if @con_orden
-    say "Con Slug"    if @con_slug
-    say "Con Archivo" if @con_archivo
-
-    say '--- Atributos ---'
-    @atributos.each do |a|
-      say a.show
-    end
-    
-    say '--- Paths ---'
-    say "singular_path  #{@singular_path}"
-    say "plural_path    #{@plural_path}"
-    say "new_path       #{@new_path}"
-    say "edit_path      #{@edit_path}"
   end
   
   def atributos_con_referencia
