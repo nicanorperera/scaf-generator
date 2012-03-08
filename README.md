@@ -1,6 +1,7 @@
 # Scaf-Generator
 
-Un generador Scaffold-like adaptado a las necesidades de Xaver.
+Incluye varios generadores adaptados a las necesidades de Xaver.
+Debe usarse en conjunto con el template de Xaver.
 
 
 ## Instalación

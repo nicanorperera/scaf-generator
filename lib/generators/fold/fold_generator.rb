@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 
-require 'generators/prueba/atributo'
+require 'generators/fold/atributo'
 
-class PruebaGenerator < Rails::Generators::Base
+class FoldGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
 
   argument :name, :type => :string, :required => true, :banner => 'Nombre'

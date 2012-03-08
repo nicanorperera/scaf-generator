@@ -2,7 +2,7 @@ Description:
     Generador Scaffold-Like adaptado a las necesidades de Xaver.
 
 Example:
-    rails generate prueba Thing
+    rails generate fold Thing
 
     This will create:
         app/controllers/admin/things_controller.rb

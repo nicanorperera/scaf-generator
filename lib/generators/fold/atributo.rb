@@ -57,7 +57,6 @@ class Atributo
 
     n1 = ANCHO - @nombre.size
     n2 = ANCHO - @clase.size
-
     n3 = @default ? ANCHO - @default.size : ANCHO
 
     s1 = ' ' * n1
